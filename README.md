@@ -1,41 +1,41 @@
-# QA Automation Challenge
+# QA Automation Challenge - QUANTO
 
+## Desenvolvido por Victor Battestin
 ## Descrição:
 
-Parte da próxima etapa, será realizar a automação (frontend e backend) do serviço de Busca CEP dos Correios.
-Você deverá providenciar uma pesquisa de CEP utilizando as urls abaixo:
+Como requisitado, foi desenvolvido um script utilizando cypress tanto para front-end quanto para backend validando 3 logradouros, ou seja, utilizando 3 CEPs na pesquisa.
 
-*Frontend:* https://www.correios.com.br/
+Abaixo irei falar mais sobre a estrutura do teste, como buildar e como executar os testes
 
-*Backend:* https://viacep.com.br/
+## Dependências
 
-Será necessário validar pelo menos o retorno de 3 logradouros, ou seja, utilizando 3 CEPs na pesquisa.
+- cypress: O teste foi escrito em Cypress por ser um framework com uma vasta comunidade e atender tanto back quanto front-end
+- cypress-cucumber-preprocessor: Como requisitado, foi utilizado o Cucumber para descrição dos cenários de teste
+- mochawesome, mochawesome-merge e mochawesome-report-generator: Também foi incluído um relatorio final de execução em html para acompanhar os resultados e gerar artefatos e evidências;
+- move-file-cli e rimraf: As duas dependências foram necessárias devido a um problema no MARGE para gerenciar os diretórios e abrir corretamente o relatório final de execução
 
-## O que validaremos nesse teste:
-- A maneira como você construiu os seus testes. Ex: Reutilização de Código;
-- Se você respeitou o que foi requisitado no desafio;
-- Documentação (README), explicando com o máximo de detalhes que puder, sobre como configurar, executar e o motivo pelo qual você adotou a estratégia de automação para esse desafio.
+## Scripts
+- "cy:clean": Limpa os resultados antigos que ainda existem no diretorio de resultados
+- "cy:run": Executa os testes e gera os jsons separadamente por feature
+- "report:merge": Mergeia os relatórios gerados em json em um único relatório
+- "report:generate": Gera um relatório único em HTML
+- "report:format": Move o relatório para o diretório correto, permitindo a visualzação do mesmo
+- "report:clean": Apaga o diretório antigo para evitar acumulo de diretórios inúteis no projeto
+- "project:run": Como o próprio nome do script sugere, roda todos os scripts anterios em um só garantindo uma execução simples e limpa 
 
-## Diferenciais *(Não Obrigatórios)*
-- Utilizar um framework da linguagem Javascript;
-- Utilizar BDD com Cucumber;
-- Incluir um relatório.
+
+## Como executar
+*1) Instale o node e o git na sua maquina*
+
+*2) Clone/Baixe o projeto*
+
+*3) Na pasta raiz, via linha de comando, execute o build do projeto: npm install*
+
+*4) Com todas as dependências instaladas, execute os testes com: npm run project:run*
+
+*5) Confira o relatório com os resultados em ./cypress/results/merged-report.html*
+
+*obs: O projeto está pronto para receber novas features e gerar o relatorio de execução de todas as features executadas. A estrutura de pastas usada foi a mais comum seguindo o padrão page-object e a geração automática do cypress.*
 
 
-## Como entregar sua solução?
-*1) Clone o repositório;*
-
-*2) Realize as alterações necessárias para construção/automação do teste;*
-
-*3) Adicione e commit todos os arquivos criados/alterados (todos mesmo);*
-
-*4) Gere um patch conforme comando de exemplo abaixo;*
-
-*5) Nos envie o patch através do email que entraremos em contato.*
-
-*Para gerar o patch:*
-```
-git format-patch origin/master --stdout > seu_nome.patch
-```
-
-### Boa sorte!
+### Obrigado, aguardo um feedback :)
